@@ -33,9 +33,9 @@
           <p class="card-text"><%= gossip.title %></p>
         </div>
         <div class="card-footer">
-          <%= link_to "Voir plus", gossip_path(gossip.id), class:"btn btn-outline-info" %>
-          <%= link_to "Editer", edit_gossip_path(gossip.id), class:"btn btn-outline-success" %>
-          <%= link_to "Supprimer", gossip_path(gossip.id), class:"btn btn-outline-danger", data:{confirm:"Etes vous sûr de vouloir supprimer ce potin ?", method:"DELETE"} %>
+          <%= link_to "Voir plus", gossip_path(gossip.id), class:"btn btn-outline-info mx-1 my-1" %>
+          <%= link_to "Editer", edit_gossip_path(gossip.id), class:"btn btn-outline-success mx-1 my-1" %>
+          <%= link_to "Supprimer", gossip_path(gossip.id), class:"btn btn-outline-danger mx-1 my-1", data:{confirm:"Etes vous sûr de vouloir supprimer ce potin ?", method:"DELETE"} %>
         </div>
       </div>
     <% end %>
