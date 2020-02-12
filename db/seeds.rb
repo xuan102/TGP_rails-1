@@ -37,7 +37,7 @@ User.create(
   first_name: Faker::Name.first_name, 
   last_name: Faker::Name.last_name, 
   description: Faker::Movie.quote,
-  email: Faker::Name.last_name + "@email.com",
+  email: Faker::Internet.email,
   age:rand(13..100),
   city_id: City.find(rand(City.first.id..City.last.id)).id
 )
