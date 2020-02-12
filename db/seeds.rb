@@ -52,6 +52,14 @@ Gossip.create(
 )
 end
 
+40.times do
+  Comment.create(
+    content: Faker::Hipster.sentence,
+    user_id: User.all.sample.id,
+    gossip_id: Gossip.all.sample.id
+  )
+end
+
 10.times do
 Tag.create(title: "#" + Faker::Verb.base)
 end

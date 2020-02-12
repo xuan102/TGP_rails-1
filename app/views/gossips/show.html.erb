@@ -22,5 +22,12 @@
   </div>
 </div>
 <div style="margin-top: 20px;"><%= link_to "Retour Accueil", root_path, :class => "btn btn-info" %></div>
+<hr>
 
+<h2>Commentaires</h2>
+
+<div>
+  <%= render 'comments/index'%>
+  <%= render 'comments/new'%>
+</div>
 </main>

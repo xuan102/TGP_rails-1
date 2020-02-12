@@ -6,13 +6,17 @@ Rails.application.routes.draw do
   get '/team', to: 'pages#team'
   get '/contact', to: 'pages#contact'
 
-  #pages gossips
-  resources:gossips
+  #gossips
+  resources :gossips do
+    resources :comments
+  end
 
-  #pages users
+  #users
   resources:users, only: [:show]
 
   #cities
   resources:cities, only: [:show]
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

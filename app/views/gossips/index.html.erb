@@ -18,7 +18,7 @@
   <h3>Voici la liste des potins les plus croustillants du web :</h3>
   <p>Cliquez sur le potin de votre choix pour en savoir plus ;)</p>
   <div class="row row-cols-5 d-flex justify-content-center">
-    <% Gossip.all.each do |gossip| %>
+    <% Gossip.all.sort.each do |gossip| %>
       <div class="card border-info text-center bg-light my-3 mx-3" style="max-width: 18rem;"> 
         <div class="card-body">
           <h5 class="card-title"><%= gossip.user.first_name %></h5>
