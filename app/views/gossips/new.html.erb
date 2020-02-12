@@ -2,7 +2,11 @@
 
 <% if @gossip.errors.any? %>
     <% @gossip.errors.full_messages.each do |message| %>
-      <p class="alert alert-danger d-flex justify-content-center" role="alert"><%= message %></p>
+      <div class="container alert alert-danger d-flex justify-content-center alert-dismissible fade show" role="alert"><%= message %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <% end %>
 <% end %>
 

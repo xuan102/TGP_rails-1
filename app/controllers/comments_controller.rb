@@ -3,13 +3,7 @@ class CommentsController < ApplicationController
   def create
 
     @gossip = Gossip.find(params[:gossip_id])
-    puts "$"*60
-    puts @gossip
-    puts "$"*60
     @comment = Comment.create(content: params[:content], user_id: User.first.id, gossip_id: @gossip.id)
-    puts "$"*60
-    puts @comment
-    puts "$"*60
     if @comment.save 
       redirect_to :root
     end
