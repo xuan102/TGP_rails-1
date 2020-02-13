@@ -46,7 +46,7 @@ end
 
 25.times do
 Gossip.create(
-  title: Faker::Name.first_name,
+  title: Faker::Book.title,
   content: Faker::Hipster.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),
   user_id: User.all.sample.id
 )
@@ -54,7 +54,7 @@ end
 
 40.times do
   Comment.create(
-    content: Faker::Hipster.sentence,
+    content: Faker::TvShows::Simpsons.quote,
     user_id: User.all.sample.id,
     gossip_id: Gossip.all.sample.id
   )
