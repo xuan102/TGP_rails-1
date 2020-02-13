@@ -9,11 +9,10 @@ Rails.application.routes.draw do
   #gossips
   resources :gossips do
     resources :comments, only: [:create, :edit, :update, :destroy]
-    resources :tags
   end
 
   #users
-  resources:users, only: [:show]
+  resources:users, only: [:create, :show]
 
   #cities
   resources:cities, only: [:show]
