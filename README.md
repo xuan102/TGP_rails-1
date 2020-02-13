@@ -35,9 +35,9 @@ http://localhost:3000/
 
 Créer ensuite votre compte ou connectez-vous avec :
 
-login : anonymous@email.com
+* login : anonymous@email.com
 
-password : 123456
+* password : 123456
 
 Bonne visite !
 
