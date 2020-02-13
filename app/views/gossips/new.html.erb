@@ -26,7 +26,7 @@
       <%=select_tag "tag", options_from_collection_for_select(@tags, :id, :title), include_blank: true%>
       <br /> <br />
 
-     <input type="hidden" name="user" value=<%= User.first.id %>>
+     <input type="hidden" name="user" value=<%= current_user.id %>>
 
       <%= submit_tag "Create Post", class:"btn btn-primary"%>
 

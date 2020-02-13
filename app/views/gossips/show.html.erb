@@ -11,8 +11,10 @@
 
 <main class="container">
 <div style="margin-bottom: 20px;">
-  <%= link_to "Editer", edit_gossip_path(@gossip.id), class:"btn btn-outline-success" %>
-  <%= link_to "Supprimer", gossip_path(@gossip.id), class:"btn btn-outline-danger", data:{confirm:"Etes vous sûr de vouloir supprimer ce potin ?", method:"DELETE"} %>
+  <% if current_user.id == @gossip.user_id%>
+    <%= link_to "Editer", edit_gossip_path(@gossip.id), class:"btn btn-outline-success mx-1 my-1" %>
+    <%= link_to "Supprimer", gossip_path(@gossip.id), class:"btn btn-outline-danger mx-1 my-1", data:{confirm:"Etes vous sûr de vouloir supprimer ce potin ?", method:"DELETE"} %>
+  <% end %>
 </div>
 <div class="card">
   <div class="card-header">
@@ -26,12 +28,24 @@
   </div>
 </div>
 <div style="margin-top: 20px;"><%= link_to "Retour Accueil", root_path, :class => "btn btn-info" %></div>
+
+<hr>
+
+<h2>Like</h2>
+<%= @likes.count %>
+  <% if @likes.map{|like| like.user_id == current_user.id ? like : nil}.compact == [] %>
+    <%= link_to "", gossip_like_index_path(@gossip.id), class:"far fa-heart fa-2x mx-1 my-1", style:"color:#ff565d;", data:{method:"POST"} %>
+  <%else%>
+    <%= link_to "", gossip_like_path(@gossip.id, current_user.id), class:"fas fa-heart fa-2x mx-1 my-1", style:"color:#ff565d;", data:{method:"DELETE"} %>
+  <%end%>
 <hr>
 
 <h2>Tags</h2>
 <% @tags.each do |tag| %>
   <%=tag%>
 <% end %>
+
+<hr>
 
 <h2>Commentaires</h2>
 

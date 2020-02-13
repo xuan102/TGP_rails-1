@@ -1,0 +1,30 @@
+<% if params[:commit] == "Login" %>
+  <div class="container alert alert-danger d-flex justify-content-center alert-dismissible fade show" role="alert">Wrong motherfucker wrong !
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% elsif params[:controller] != "sessions" %>
+  <div class="container alert alert-danger d-flex justify-content-center alert-dismissible fade show" role="alert">Merci de vous identifier pour visiter cette page
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
+
+<div class="container mt-5 form-group">
+ <%= form_tag sessions_path, method: "post" do %>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+      <%= label_tag 'e-mail' %>
+      <%= text_field_tag 'email', @user.email, class:"form-control" %>
+      <br /> <br />
+
+      <%= label_tag 'Mot de passe' %>
+      <%= text_field_tag 'password', @user.email, class:"form-control", type:"password" %>
+      <br /> <br />
+
+      <%= submit_tag "Login", class:"btn btn-primary"%>
+
+    <% end %>
+</div>

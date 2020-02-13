@@ -12,6 +12,7 @@ Gossip.destroy_all
 Tag.destroy_all
 JoinTableTagGossip.destroy_all
 PrivateMessage.destroy_all
+JoinPmReceiver.destroy_all
 Comment.destroy_all
 Like.destroy_all
 
@@ -27,22 +28,25 @@ User.create(
   last_name: "Ymous", 
   description: "You can't see me but i'm not John Cena",
   email: "anonymous@email.com",
+  password: "123456",
+  password_confirmation: "123456",
   age:rand(13..100),
   city_id: City.all.sample.id
 )
 
-
 15.times do
+@password = Faker::Code.imei
 User.create(
   first_name: Faker::Name.first_name, 
   last_name: Faker::Name.last_name, 
   description: Faker::Movie.quote,
   email: Faker::Internet.email,
+  password: @password,
+  password_confirmation: @password,
   age:rand(13..100),
   city_id: City.all.sample.id
 )
 end
-
 
 25.times do
 Gossip.create(
@@ -71,10 +75,10 @@ JoinTableTagGossip.create(
 )
 end
 
-
 20.times do
-  PrivateMessage.create(sender: User.all.sample, content: Faker::Quote.unique.most_interesting_man_in_the_world)
-  rand(1..6).times do
-    JoinPmReceiver.create(private_message: PrivateMessage.all.last, recipient: User.all.sample)
-  end
+  Like.create(
+    user_id: User.all.sample.id,
+    content_type: "Gossip",
+    content_id: Gossip.all.sample.id
+  )
 end

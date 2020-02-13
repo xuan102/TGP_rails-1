@@ -1,11 +1,15 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, except: [:index]
+
   def index
   end
 
   def show
     @gossip = Gossip.find(params[:id])
     @comment = Comment.new
-    @tags = JoinTableTagGossip.all.map{|join| join.gossip_id == @gossip.id ? join.tag.title : nil}.compact    
+    @tags = JoinTableTagGossip.all.map{|join| join.gossip_id == @gossip.id ? join.tag.title : nil}.compact
+    @likes = @gossip.likes
+
     @comments = @gossip.comments
   end
 
@@ -37,7 +41,7 @@ class GossipsController < ApplicationController
     show
     @tag = JoinTableTagGossip.find_by(gossip_id: @gossip.id)
     if @gossip.update(title: params[:title], content: params[:content])
-      if params[:tag] == "" && @tag = nil
+      if params[:tag] == "" && @tag == nil
         puts params
         render :show
       else 
