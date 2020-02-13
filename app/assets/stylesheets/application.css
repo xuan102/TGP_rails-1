@@ -51,3 +51,7 @@
  #lazyrabbit:hover{
    opacity: 1;
  }
+
+ .fas:hover, .far:hover{
+  text-decoration: none;
+ }

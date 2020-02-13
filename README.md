@@ -33,6 +33,10 @@ Une fois le server connecté, rendez-vous sur :
 
 http://localhost:3000/
 
+Créer ensuite votre compte ou connectez-vous avec :
+login : anonymous@email.com
+password : 123456
+
 Bonne visite !
 
 ## 🐰 Auteur

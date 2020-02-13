@@ -56,7 +56,7 @@ Gossip.create(
 )
 end
 
-40.times do
+70.times do
   Comment.create(
     content: Faker::TvShows::Simpsons.quote,
     user_id: User.all.sample.id,
@@ -75,7 +75,7 @@ JoinTableTagGossip.create(
 )
 end
 
-20.times do
+150.times do
   Like.create(
     user_id: User.all.sample.id,
     content_type: "Gossip",
