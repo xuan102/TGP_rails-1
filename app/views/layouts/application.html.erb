@@ -18,8 +18,8 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item <%= 'active' if current_page?(root_path) %>">
             <%= link_to "Accueil", root_path, :class => "nav-link" %>
           </li>
@@ -29,12 +29,14 @@
           <li class="nav-item <%= 'active' if current_page?(contact_path) %>">
             <%= link_to "Contact", contact_path, :class => "nav-link" %>
           </li>
+        </ul>
+        <ul class="navbar-nav">
           <% if session[:user_id] == nil%>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="btn-group">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 S'inscrire / Se connecter
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <%= link_to "Inscription", new_user_path, :class => "dropdown-item" %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Connection", new_session_path, :class => "dropdown-item" %>
@@ -42,12 +44,12 @@
             </li>
           <% else %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= current_user.first_name %>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.first_name + " " + current_user.last_name %>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <%= link_to "Voir profil", user_path(current_user.id), class: "dropdown-item" %>
-                <%= link_to "Parametres", user_path(current_user.id), class: "dropdown-item" %>
+                <!--<%= link_to "Parametres", user_path(current_user.id), class: "dropdown-item" %>-->
                 <div class="dropdown-divider"></div>
                 <%= link_to "Se déconnecter", session_path(session.id), class:"dropdown-item", method: :delete %>
               </div>

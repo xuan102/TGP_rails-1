@@ -35,21 +35,16 @@ class GossipsController < ApplicationController
   def edit
     @tags = Tag.all
     @gossip = Gossip.find(params[:id])
+    @current_tags = JoinTableTagGossip.all.map{|join| join.gossip_id == @gossip.id ? join.tag : nil}.compact
   end
 
   def update
     show
-    @tag = JoinTableTagGossip.find_by(gossip_id: @gossip.id)
     if @gossip.update(title: params[:title], content: params[:content])
-      if params[:tag] == "" && @tag == nil
-        puts params
-        render :show
-      else 
-        @tag != nil ? @tag.update(tag_id: Tag.find(params[:tag]).id, gossip_id: @gossip.id) : JoinTableTagGossip.create(tag_id: Tag.find(params[:tag]).id, gossip_id: @gossip.id) 
-        puts params
-        show
-        render :show
-      end
+      JoinTableTagGossip.create(tag_id: Tag.find(params[:tag]).id, gossip_id: @gossip.id)  unless params[:tag] == ""
+      JoinTableTagGossip.find_by(tag_id: Tag.find(params[:delete_tag]).id, gossip_id: @gossip.id).destroy unless params[:delete_tag] == ""
+      show
+      render :show
     end
   end
 

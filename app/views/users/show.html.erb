@@ -32,9 +32,10 @@
               <%= link_to "", gossip_like_index_path(gossip.id), class:"far fa-heart mx-1 my-1", style:"color:#ff565d;", data:{method:"POST"} %>
             <%end%>
             <%= link_to "Voir plus", gossip_path(gossip.id), class:"btn btn-outline-info" %>
-            <% if current_user.id == gossip.user_id%>
-              <%= link_to "Editer", edit_gossip_path(gossip.id), class:"btn btn-outline-success mx-1 my-1" %>
-              <%= link_to "Supprimer", gossip_path(gossip.id), class:"btn btn-outline-danger mx-1 my-1", data:{confirm:"Etes vous sûr de vouloir supprimer ce potin ?", method:"DELETE"} %>
+            <% if current_user%>
+              <% if current_user.id == gossip.user_id%>
+                <%= link_to "", user_path(current_user.id), class:"fas fa-star mx-1 my-1", style:"color:#efd807;" %>
+              <% end %>
             <% end %>
           </div>
         </div>

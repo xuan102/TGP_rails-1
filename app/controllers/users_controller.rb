@@ -5,6 +5,7 @@ class UsersController < ApplicationController
       redirect_to '/'
     end
     @user = User.new
+    @age = [7..77]
   end
 
   def create
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
     )
 
     if @user.save
+      log_in(@user)
       render 'gossips/index'
     else
       render :new

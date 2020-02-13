@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
     if current_user
       redirect_to '/'
     end
-    user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:email])
 
     # on vérifie si l'utilisateur existe bien ET si on arrive à l'authentifier (méthode bcrypt) avec le mot de passe 
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    if @user && @user.authenticate(params[:password])
+      log_in(@user)
       render 'gossips/index'
     else
       @user = User.new    

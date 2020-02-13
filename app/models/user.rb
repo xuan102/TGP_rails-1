@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   belongs_to :city
+  validates :email, 
+    presence: true,
+    uniqueness: true,
+    format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
   has_secure_password
   validates :password, 
     presence: true, 
